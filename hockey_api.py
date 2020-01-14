@@ -60,7 +60,7 @@ class HockeyRESTAPI:
 
     def request(self, rq_method, url_parts, params=None, data=None, json=None, version=None, stream=False):
         """
-            Perform a request on a restapi endpoint
+        Perform a request on a restapi endpoint
         """
         response = None
         # if self.token is None:
@@ -99,7 +99,26 @@ class HockeyRESTAPI:
 class HockeyAPI(HockeyRESTAPI):
 
     def create_player(self, player_json):
+        """
+        Method to create a new player in the database
+        :param player_json: a dictionary of the form:
+
+        :return: response from the server
+        """
         return self.request('post', ['players', 'create_player'], json=player_json)
 
     def get_leagues(self):
+        """
+        Method to retrieve all the leagues in the database
+
+        :return: json result of query
+        """
         return self.request('get', ['leagues', 'read'])
+
+    def get_players(self):
+        """
+        Method to retrieve all the players in the database
+
+        :return: json result of query
+        """
+        return self.request('get', ['players', 'read'])
